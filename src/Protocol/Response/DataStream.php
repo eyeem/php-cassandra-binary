@@ -349,7 +349,7 @@ class DataStream {
 	 */
 	public function readByType(array $type, $isCollectionElement = false) {
 
-		if ( $this->data === null ) {
+		if ( $this->data === null || $this->data === false) {
 			return null;
 		}
 

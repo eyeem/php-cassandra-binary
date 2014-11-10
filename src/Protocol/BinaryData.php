@@ -139,6 +139,9 @@ class BinaryData {
 	 * @return string
 	 */
 	private function getBigInt() {
+		if (is_null($this->value)) {
+			return (string)$this->value;
+		}
 		if (!$value = intval($this->value))
 				trigger_error('BigInt value ' . $value . ' not an int', E_USER_ERROR);
 		$highMap = 0xffffffff00000000;

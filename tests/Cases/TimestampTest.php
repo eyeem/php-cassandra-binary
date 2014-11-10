@@ -17,7 +17,12 @@ class QueryTimestampTest extends Setup\QueryTestCase
 				$result = self::$connection->query('SELECT * FROM TimestampTest WHERE foo = :foo', ['foo' => 1410993581]);
 				$this->assertEquals(1410993581, $result[0]['foo']);
 				$this->assertEquals(1415290229, $result[0]['bar']);
+				self::$connection->query(
+					'INSERT INTO TimestampTest(foo,bar) VALUES (:foo, :bar)',
+					['foo' => 12345, 'bar' => null]
+				);
+				$result = self::$connection->query('SELECT * FROM TimestampTest WHERE foo = :foo', ['foo' => 12345]);
+				$this->assertEquals(null, $result[0]['bar']);
 		}
-
 
 }
